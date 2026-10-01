@@ -1,5 +1,5 @@
 import { Component, computed, input, output } from '@angular/core';
-
+import { DatePipe } from '@angular/common';
 interface Tarea {
   id: number;
   titulo: string;
@@ -8,7 +8,7 @@ interface Tarea {
 }
 
 @Component({
-  imports: [],
+  imports: [DatePipe],
   selector: 'app-tarea-card',
   styleUrl: './tarea-card.css',
   templateUrl: './tarea-card.html',
@@ -16,8 +16,7 @@ interface Tarea {
 
 export class TareaCard {
   tarea = input.required<Tarea>();
-  eliminar = output<string>();
-  
+  eliminar = output<number>();
   vencida = computed(() => {
     const fechaVencimiento = new Date(this.tarea().fechaVencimiento);
     const fechaActual = new Date();
@@ -25,6 +24,6 @@ export class TareaCard {
   });
 
   eliminarTarea() {
-    this.eliminar.emit(this.tarea().id.toString());
+    this.eliminar.emit(this.tarea().id);
   }
 }

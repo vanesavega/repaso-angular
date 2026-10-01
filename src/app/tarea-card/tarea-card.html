@@ -2,6 +2,10 @@
 <a href="#" class="bg-neutral-primary-soft block max-w-sm p-6 border border-default rounded-base shadow-xs hover:bg-neutral-secondary-medium">
     <h5 class="mb-3 text-2xl font-semibold tracking-tight text-heading leading-8">{{ tarea().titulo }}</h5>
     <p class="text-body">{{ tarea().descripcion }}</p>
+    <p>{{ tarea().fechaVencimiento | date }}</p>
+    @if (vencida() === 'Vencida') {
+        <p class="bg-danger-soft text-danger font-medium">Vencida</p>
+    }
     <button (click)="eliminarTarea()" class="mt-4 text-sm font-medium text-primary hover:underline">Eliminar</button>
 </a>
 }

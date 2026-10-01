@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { TareaCard } from '../tarea-card/tarea-card';
 
 @Component({
@@ -8,7 +8,7 @@ import { TareaCard } from '../tarea-card/tarea-card';
   templateUrl: './tareas-board.html',
 })
 export class TareasBoard {
-  tareas = [
+  tareas = signal([
     {
       id: 1,
       titulo: 'Tarea 1',
@@ -27,9 +27,9 @@ export class TareasBoard {
       descripcion: 'Descripción de la tarea 3',
       fechaVencimiento: new Date('2023-08-01'),
     },
-  ];
-
+  ]);
+  
   eliminarTarea(id: number) {
-    this.tareas = this.tareas.filter((tarea) => tarea.id !== id);
+    this.tareas.update(lista => lista.filter(t => t.id !== id));
   }
 }
