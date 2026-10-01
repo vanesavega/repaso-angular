@@ -1,0 +1,8 @@
+<h1 class="text-3xl font-bold mb-4">Tareas</h1>
+
+@for(tarea of tareas; track tarea.id){
+    <app-tarea-card 
+        [tarea]="tarea" 
+        (eliminar)="eliminarTarea(tarea.id)">
+    </app-tarea-card>
+}
